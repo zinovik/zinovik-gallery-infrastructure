@@ -10,6 +10,12 @@ resource "google_project_iam_member" "spacelift_secret_admin" {
   member  = "serviceAccount:${var.spacelift_service_account_email}"
 }
 
+resource "google_project_iam_member" "spacelift_cloudscheduler_admin" {
+  project = var.project_id
+  role    = "roles/cloudscheduler.admin"
+  member  = "serviceAccount:${var.spacelift_service_account_email}"
+}
+
 resource "google_service_account" "spacelift" {
   account_id   = "spacelift"
   display_name = "Spacelift CI"
