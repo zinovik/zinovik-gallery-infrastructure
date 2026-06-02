@@ -10,8 +10,13 @@ resource "google_project_iam_member" "spacelift_secret_admin" {
   member  = "serviceAccount:${var.spacelift_service_account_email}"
 }
 
-resource "google_service_account_iam_member" "spacelift_act_as_appengine_sa" {
-  service_account_id = "projects/${var.project_id}/serviceAccounts/${var.project_id}@appspot.gserviceaccount.com"
+resource "google_service_account" "spacelift" {
+  account_id   = "spacelift"
+  display_name = "Spacelift CI"
+}
+
+resource "google_service_account_iam_member" "spacelift_act_as_sa" {
+  service_account_id = google_service_account.spacelift.name
   role               = "roles/iam.serviceAccountUser"
   member             = "serviceAccount:${var.spacelift_service_account_email}"
 }
