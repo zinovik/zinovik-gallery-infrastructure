@@ -26,3 +26,33 @@ resource "google_project_iam_member" "github_artifact_writer" {
   role    = "roles/artifactregistry.writer"
   member  = "serviceAccount:${google_service_account.github.email}"
 }
+
+resource "google_project_iam_member" "github_cloudbuild_editor" {
+  project = var.project_id
+  role    = "roles/cloudbuild.builds.editor"
+  member  = "serviceAccount:${google_service_account.github.email}"
+}
+
+resource "google_project_iam_member" "github_service_usage_consumer" {
+  project = var.project_id
+  role    = "roles/serviceusage.serviceUsageConsumer"
+  member  = "serviceAccount:${google_service_account.github.email}"
+}
+
+resource "google_project_iam_member" "github_storage_admin" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${google_service_account.github.email}"
+}
+
+resource "google_project_iam_member" "github_logging_viewer" {
+  project = var.project_id
+  role    = "roles/logging.viewer"
+  member  = "serviceAccount:${google_service_account.github.email}"
+}
+
+resource "google_project_iam_member" "github_viewer" {
+  project = var.project_id
+  role    = "roles/viewer"
+  member  = "serviceAccount:${google_service_account.github.email}"
+}

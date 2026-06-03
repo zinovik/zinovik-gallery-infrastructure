@@ -8,7 +8,7 @@ resource "google_cloud_scheduler_job" "gallery_update_sources_config" {
     http_method = "POST"
 
     oidc_token {
-      service_account_email = "gallery-api@zinovik-gallery.iam.gserviceaccount.com"
+      service_account_email = "cloud-scheduler-invoker@${var.project_id}.iam.gserviceaccount.com"
       audience              = "https://gallery-api-278546267214.europe-central2.run.app/edit/update-sources-config"
     }
   }
