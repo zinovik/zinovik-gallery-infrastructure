@@ -4,7 +4,6 @@ resource "google_project_service" "required" {
     "cloudbuild.googleapis.com",
     "artifactregistry.googleapis.com",
     "secretmanager.googleapis.com",
-    "cloudscheduler.googleapis.com",
   ])
 
   project = var.project_id

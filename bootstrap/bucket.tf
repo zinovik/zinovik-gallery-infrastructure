@@ -12,13 +12,20 @@ resource "google_storage_bucket" "gallery-files" {
     response_header = ["Content-Type"]
     max_age_seconds = 3600
   }
-}
 
-resource "google_storage_bucket" "gallery-data" {
-  name     = "gallery-data"
-  location = "europe-central2"
-
-  versioning {
+  autoclass {
     enabled = true
   }
+
+  soft_delete_policy {
+    retention_duration_seconds = 0 # clear soft delete
+  }
+}
+
+# Permission for old api service account, will be removed
+
+resource "google_storage_bucket_iam_member" "gallery_files_viewer" {
+  bucket = google_storage_bucket.gallery-files.name
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:gallery@zinovik-project.iam.gserviceaccount.com"
 }
