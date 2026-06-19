@@ -22,7 +22,7 @@ resource "google_storage_bucket" "gallery-files" {
   }
 }
 
-# Permissions for other projects
+# Permissions for other projects service accounts
 
 resource "google_storage_bucket_iam_member" "storage_tools_object_admin" {
   bucket = google_storage_bucket.gallery-files.name
@@ -33,12 +33,6 @@ resource "google_storage_bucket_iam_member" "storage_tools_object_admin" {
 resource "google_storage_bucket_iam_member" "fuftyfu_api_object_viewer" {
   bucket = google_storage_bucket.gallery-files.name
   role   = "roles/storage.objectViewer"
-  member = "serviceAccount:fuftyfu@zinovik-project.iam.gserviceaccount.com"
-}
-
-resource "google_storage_bucket_iam_member" "fuftyfu_api_object_creator" {
-  bucket = google_storage_bucket.gallery-files.name
-  role   = "roles/storage.objectCreator"
   member = "serviceAccount:fuftyfu@zinovik-project.iam.gserviceaccount.com"
 }
 
