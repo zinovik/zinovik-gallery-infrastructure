@@ -36,11 +36,3 @@ resource "google_project_iam_member" "storage_tools_firestore_user" {
   role    = "roles/datastore.user"
   member  = "serviceAccount:storage-tools@zinovik-project.iam.gserviceaccount.com"
 }
-
-# old bucket with json files, will be removed
-
-resource "google_storage_bucket_iam_member" "gallery_api_object_admin" {
-  bucket = "zinovik-gallery"
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${google_service_account.gallery_api.email}"
-}
