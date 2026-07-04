@@ -14,3 +14,8 @@ variable "gallery_api_jwt_secret" {
   description = "JWT secret for Gallery API"
   type        = string
 }
+
+variable "gallery_api_mongo_uri" {
+  description = "Mongo DB connection string"
+  type        = string
+}
